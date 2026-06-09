@@ -96,15 +96,4 @@ For every topic:
 
 All code and notes in this repository are educational and research-oriented. They are not intended for production use.
 
-## Author
 
-Hamza El Ghabouchi
-
-MSc Student in Cryptography & Information Security
-
-Interests:
-
-* Applied Cryptography
-* Provable Security
-* Zero-Knowledge Proofs
-* Smart Contract Security
