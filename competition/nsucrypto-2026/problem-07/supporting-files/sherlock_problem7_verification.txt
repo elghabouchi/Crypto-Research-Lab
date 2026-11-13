@@ -1,0 +1,23 @@
+Bytes: 1816 ; inputs: 1 ; outputs: 64 ; locktime: 0
+SHA256: 312d22d7be612a333fa24df790a35099ba738bf35db990be7c3c612a2df48af8
+All output indices below are zero-based.
+Group | signal output indices | OP_RETURN index | Morse | letter
+1 | 0-2 | 3 | -.- | K
+2 | 4-4 | 5 | . | E
+3 | 6-9 | 10 | -.-- | Y
+4 | 11-12 | 13 | .. | I
+5 | 14-16 | 17 | ... | S
+6 | 18-21 | 22 | -.-. | C
+7 | 23-25 | 26 | .-. | R
+8 | 27-30 | 31 | -.-- | Y
+9 | 32-35 | 36 | .--. | P
+10 | 37-37 | 38 | - | T
+11 | 39-41 | 42 | --- | O
+12 | 43-45 | 46 | .-- | W
+13 | 47-49 | 50 | --- | O
+14 | 51-53 | 54 | .-. | R
+15 | 55-58 | 59 | .-.. | L
+16 | 60-62 | 63 | -.. | D
+Decoded message: KEYISCRYPTOWORLD
+ACCESS CODE: CRYPTOWORLD
+ALL PARSING, GROUP-LENGTH AND BYTE-ROUNDTRIP CHECKS PASSED.

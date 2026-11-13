@@ -52,6 +52,7 @@ The primary goal is not only to implement cryptographic constructions, but also 
 ```text
 crypto-research-lab/
 │
+├── competition/
 ├── provable-security/
 ├── cryptographic-protocols/
 ├── zero-knowledge/
@@ -60,6 +61,10 @@ crypto-research-lab/
 ├── reports/
 └── references/
 ```
+
+## Competitions
+
+* [NSUCRYPTO 2026](competition/nsucrypto-2026/) — Second-round problems, personal solutions and attempts, proofs, and supporting computations.
 
 ## Current Roadmap
 

@@ -1,0 +1,5 @@
+Grilles tested: 262144 ; unique match: (0, 4, 11, 17, 19, 20, 26, 28, 32)
+Exact reply: 'By asking me a riddle that only the secret word couldanswer,for keeping mouthshut is loudest waytosay Iknow!'
+Initial grille, zero-based cells: (0, 4, 11, 17, 19, 20, 26, 28, 32)
+Reply grille, zero-based cells: (0, 9, 15, 16, 17, 24, 28, 31, 32)
+ALL EXACT ENCRYPTION AND DECRYPTION CHECKS PASSED.

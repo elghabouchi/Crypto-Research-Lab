@@ -1,0 +1,8 @@
+BASE: all 2048 degree-at-most-2 functions on 4 variables checked.
+EXAMPLE: 8-variable quartic; degrees (f,g,h)=(4,4,2); Walsh(g), Walsh(h)=+/-16.
+CUBIC: 256 deterministic random 7-variable cubics lifted to 10 variables;
+       every decomposition checked pointwise; every Walsh coefficient is +/-32.
+QUARTIC: 8 deterministic random quartic forms on 16 variables;
+         six-dimensional isotropic spaces found; all 8192 slices have degree <=3.
+         This check does not compute Walsh spectra on 26 variables.
+PASS. Sampled checks supplement the proofs; the full conjecture is not resolved.

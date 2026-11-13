@@ -1,0 +1,2 @@
+{'q': 43, 'independent_solutions': 21, 'nonstandard': 0, 'nodes': 10294}
+{'q': 47, 'independent_solutions': 23, 'nonstandard': 0, 'nodes': 19010}

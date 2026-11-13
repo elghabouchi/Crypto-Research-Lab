@@ -1,0 +1,57 @@
+{
+  "truth_encoding": "bit i of the hexadecimal integer is the value at input i",
+  "explicit_quartic8": {
+    "n": 8,
+    "coordinate_order": "u,v,x1,x2,x3,y1,y2,y3 (low to high bits)",
+    "f_truth_hex": "500f0ff0a0ffff00af0ff0f05fff0000aff00ff05f00ff0050f0f0f0a0000000",
+    "g_truth_hex": "27877878d8878778d87878782778877828777788d7778888d788778828888888",
+    "h_truth_hex": "7788778878787878777788887887877887877878887777888778877888888888"
+  },
+  "sampled_cubic10": {
+    "n": 10,
+    "active_anf_masks": [
+      0,
+      2,
+      3,
+      4,
+      8,
+      11,
+      17,
+      18,
+      21,
+      22,
+      25,
+      34,
+      42,
+      44,
+      50,
+      52,
+      56,
+      64,
+      65,
+      68,
+      70,
+      73,
+      74,
+      80,
+      82,
+      84,
+      97,
+      98,
+      104,
+      112
+    ],
+    "control_then_z_basis": [
+      8,
+      16,
+      64,
+      1,
+      2,
+      4,
+      32
+    ],
+    "coordinate_order": "u:3 low bits, z:4, v:3 high bits",
+    "g_truth_hex": "66e979961906e99689790696f6969696cc43d33cb3ac433c23d3ac3c5c3c3c3caa25b55ad5ca255a45b5ca5a3a5a5a5a008f1ff07f608ff0ef1f60f090f0f0f096198966e9f619667989f666066666663cb323cc435cb3ccd3235cccaccccccc5ad545aa253ad5aab5453aaacaaaaaaaf07fef008f907f001fef900060000000",
+    "h_truth_hex": "39cb75b21fb1801bc1bc743c81a0e7f39361df18b51b2ab16b16de962b0a4d59f507b97ed37d4cd70d70b8f04d6c2b3f5fad13d479d7e67da7da125ae7c68195c93b8542ef4170eb314c84cc7150170363912fe845ebda419be62e66dbfabda905f7498e238dbc27fd804800bd9cdbcfaf5de3248927168d572ae2aa17367165"
+  }
+}

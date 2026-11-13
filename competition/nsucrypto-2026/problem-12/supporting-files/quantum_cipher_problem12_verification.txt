@@ -1,0 +1,9 @@
+Bell phase table: all 16 identities verified exactly.
+Chosen plaintext |0+>: all four key values distinguished with probability 1.
+All 16 allowed plaintext pairs: exact Bell probabilities, averaged states, and marginals verified.
+Uniform 16-label ensemble: Bell outcome information = 0.5 bit per pair.
+Uniform unknown plaintexts: ensemble ciphertext is key-independent, even for a fixed key.
+Malleability: arbitrary local Pauli modification survives decryption; swap commutes with every key.
+Channel identities: Bell dephasing and independent-Pauli randomization verified on all 16 matrix units.
+Restricted-alphabet repair: independent fresh I/Y masks randomize all 16 BB84 product inputs.
+PASS: all algebraic assertions use exact integer or rational arithmetic; only entropy uses log2.

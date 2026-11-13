@@ -1,0 +1,477 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,array}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={NSUCRYPTO 2026 Problem 9: Vector LRS -- verified partial results},pdfauthor={Hamza El Ghabouchi; Oumaima Aboukhyyou; Abdoulie Y Bojang}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small NSUCRYPTO 2026 -- Second Round}
+\fancyhead[R]{\small Problem 9: Vector LRS}
+\fancyfoot[C]{\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Prim}{\operatorname{Prim}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Split}{\operatorname{Split}}
+\newcommand{\US}{\textup{(US)}}
+\numberwithin{equation}{section}
+\title{\textbf{Problem 9: Vector LRS}\\[3pt]
+\large NSUCRYPTO 2026 -- Second Round\\[3pt]
+Verified partial results and computational proofs}
+\author{Hamza El Ghabouchi\qquad Oumaima Aboukhyyou\\[3pt] Abdoulie Y Bojang}
+\date{19 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We reduce the decimation condition in Problem 9 exactly to a universal splitting-subspace condition, and prove that commuting recurrence matrices correspond exactly to scalar multiples of a subfield. We give an elementary proof for $n=m=2$, conditional structural theorems, an intersection bound from character sums, and reproducible finite computational proofs. For $m=2$, we classify in every dimension the spaces sharing a hyperplane with a scalar middle subfield; the small dimensions in this result are certified computationally. Exhaustive searches establish the desired conclusion for nineteen parameter pairs. \textbf{The unrestricted implication $\US\Rightarrow U=c\F_{2^n}$ remains unresolved by this submission.} No counterexample is obtained, and no claim of mathematical priority is made.
+\end{abstract}
+
+\section{Problem statement and conventions}
+Let $v(i)\in\F_2^n$ satisfy
+\begin{equation}\label{eq:recurrence}
+v(i+m)=\sum_{\ell=0}^{m-1}A_\ell v(i+\ell),\qquad A_\ell\in M_n(\F_2),\quad i\ge0.
+\end{equation}
+Its period is the least positive $T$ with $v(i+T)=v(i)$ for all $i\ge0$. The problem assumes period $\tau=2^{nm}-1$ and asks: if every decimation $w(i)=v(di)$, with $d>0$ coprime to $\tau$, is also an order-$m$ vector recurrence of period $\tau$, must the matrices $A_\ell$ commute pairwise? The cases $n=1$ and $m=1$ are immediate.
+
+Unless stated otherwise, $n,m\ge2$, $N=nm$, $K=\F_{2^N}$, and $S=\F_{2^n}\subset K$. Dimensions without a specified field are over $\F_2$. An element of $K$ is \emph{primitive} if its multiplicative order is $2^N-1$. For a nonzero subspace $U\subset K$, define
+\[
+U/U=\{a/b:a,b\in U,\ b\ne0\}.
+\]
+A space $U$ of dimension $n$ is \emph{canonical} if $U=cS$ for some $c\in K^*$.
+
+\textbf{Status labels.} Theorems with ordinary proofs below are mathematical results, sometimes using an explicitly stated external theorem. Results labeled \emph{computer-assisted} also use exhaustive finite computations whose algorithms and certificates are supplied. Numerical character-sum checks are only implementation checks; they do not prove the external character-sum theorem.
+
+\section{Exact finite-field reformulation}\label{sec:reform}
+\begin{proposition}\label{prop:reform}
+The hypothesis on decimations is equivalent to the following condition on an $n$-dimensional binary subspace $U$ of $K$:
+\begin{equation}\tag{US}\label{eq:US}
+K=U\oplus\beta U\oplus\cdots\oplus\beta^{m-1}U
+\quad\text{for every }\beta\in\Prim(K).
+\end{equation}
+Conversely, every space satisfying \US\ arises from a recurrence having the hypothesis of the problem.
+\end{proposition}
+\begin{proof}
+Write $s_i=(v(i),\ldots,v(i+m-1))$ and let $T$ be its binary linear transition. The $\tau$ states in a period are distinct: equality $s_i=s_j$, $0\le i<j<\tau$, propagates to all later outputs by the recurrence, and periodicity then gives period $j-i$ from the start. No state is zero, since that would force all later outputs, and hence all outputs by periodicity, to vanish. Thus these states are all nonzero vectors of $\F_2^N$.
+
+It follows that $T$ is invertible and transitive on the nonzero vectors. A nonzero $T$-invariant subspace would contain an entire orbit and hence be the whole space. The $\F_2[X]$-module defined by $T$ is therefore simple, so it is $\F_2[X]/(p)$ for an irreducible polynomial $p$ of degree $N$. Identifying this field with $K$, $T$ is multiplication by an element $\alpha$ of order $\tau$, hence a primitive element.
+
+The trace pairing $(x,y)\mapsto\Tr_{K/\F_2}(xy)$ is nondegenerate. Absorb the nonzero initial state into its coefficients to write
+\[
+v_j(i)=\Tr_{K/\F_2}(c_j\alpha^i),\qquad 1\le j\le n.
+\]
+The $c_j$ are independent, because the output projection from the full state space has rank $n$. Put $U=\Span_{\F_2}\{c_1,\ldots,c_n\}$.
+
+For $\beta=\alpha^d$, the map from a field state $x$ to an $m$-term observation window has trace coefficients $\beta^\ell c_j$, $0\le\ell<m$, $1\le j\le n$. It is an isomorphism precisely when these $N$ coefficients form a basis of $K$, that is, when the displayed splitting holds.
+
+A coprime decimation already has period $\tau$: if $t$ is its period, then $v(d(i+t))=v(di)$ for all $i$; the residues $di$ cover $\mathbb Z/\tau\mathbb Z$, so $dt$ is a period of $v$ and $\tau\mid t$. If the decimation has an order-$m$ recurrence, its windows, by the preceding state argument, exhaust the nonzero states, so the observation map is invertible. Conversely, an invertible observation map conjugates multiplication by $\beta$ to a window transition, whose last output block is a linear combination of the preceding $m$ blocks. This gives the required recurrence. As $d$ runs through the units modulo $\tau$, $\beta$ runs through all primitive elements.
+
+Finally, given any $U$ satisfying \US, choose a basis $c_j$ and any primitive $\alpha$. The same trace formula with initial field state $1$ has an invertible window map, yields an order-$m$ recurrence, and has period $\tau$ by window observability. The argument applies to every primitive decimation. This proves the converse realization as well.
+\end{proof}
+
+\section{Characterization of commuting coefficients}\label{sec:commute}
+\begin{theorem}\label{thm:commute}
+For a maximum-period recurrence, the matrices $A_0,\ldots,A_{m-1}$ commute pairwise if and only if its associated space is canonical. Every canonical space satisfies \US.
+\end{theorem}
+\begin{proof}
+Nondegeneracy of the trace pairing and \eqref{eq:recurrence} give
+\begin{equation}\label{eq:coeff}
+\alpha^m c_j=\sum_{\ell=0}^{m-1}\sum_{k=1}^n A_\ell[j,k]\alpha^\ell c_k.
+\end{equation}
+In the basis $(c_1,\ldots,c_n,\alpha c_1,\ldots,\alpha^{m-1}c_n)$, multiplication by $\alpha$ has subdiagonal identity blocks and final block column $(B_0,\ldots,B_{m-1})^T$, where $B_\ell=A_\ell^T$.
+
+Suppose the $B_\ell$ commute and set $D=\F_2[B_0,\ldots,B_{m-1}]$, including the identity. For $H\in D$, the matrix $\widehat H=\operatorname{diag}(H,\ldots,H)$ commutes with multiplication by $\alpha$. The centralizer of that multiplication is precisely the set of field multiplications $x\mapsto bx$, $b\in K$: a commuting map is determined by its value on $1$, since $1,\alpha,\ldots,\alpha^{N-1}$ is a basis. Hence $H\mapsto\widehat H$ embeds $D$ as a finite unital subring $L$ of $K$. Such a subring is a field, say $L=\F_{2^s}$.
+
+Its action preserves the first block $U$, so $s\mid n$. If $b_\ell\in L$ corresponds to $\widehat B_\ell$, equation \eqref{eq:coeff} becomes
+\[
+\alpha^m u=\sum_{\ell<m}\alpha^\ell b_\ell u\qquad(u\in U).
+\]
+Choose $u\ne0$ and divide by $u$. Since $L(\alpha)=K$, this polynomial relation implies $N/s=[K:L]\le m$, hence $s\ge n$. Therefore $s=n$, $L=S$, and $U$ is a one-dimensional $S$-space: $U=cS$.
+
+Conversely, if $U=cS$, the degree of $\alpha$ over $S$ is $m$. Write its minimal polynomial as $X^m+\sum_{\ell<m}a_\ell X^\ell$. Equation \eqref{eq:coeff} and uniqueness in the splitting basis show that $B_\ell$ is multiplication by $a_\ell$ on $U$. These multiplications commute, and their transposes $A_\ell$ commute as well. For every primitive $\beta$, $S(\beta)=K$; thus $1,\beta,\ldots,\beta^{m-1}$ is an $S$-basis of $K$. Multiplication by $c$ proves \US.
+\end{proof}
+
+Thus the unrestricted question is exactly
+\begin{equation}\label{eq:classification}
+\US\quad\Longrightarrow\quad U=c\F_{2^n}.
+\end{equation}
+The preceding theorem identifies the conclusion; it does not prove this implication.
+
+\section{Established special cases and elementary restrictions}\label{sec:special}
+\begin{proposition}\label{prop:22}
+The answer to Problem 9 is affirmative for $n=m=2$.
+\end{proposition}
+\begin{proof}
+Here $K=\F_{16}$ and $S=\F_4$. Scale $U$ so that $U=\Span\{1,t\}$. If $t\in S$, then $U=S$. Otherwise $t$ has order $5$ or $15$. If it has order $15$, it is primitive. If it has order $5$, then $t+1$ is primitive: order $3$ would give $t(t^2+t+1)=0$, a contradiction; order $5$ would give $t^4+t+1=0$, which, added to $t^4+t^3+t^2+t+1=0$, yields $t^2(t+1)=0$. Since $t+1\ne0,1$, its only remaining order is $15$. Therefore $U$ contains a primitive $\beta$. Since $1\in U$, $\beta\in U\cap\beta U$, contradicting \US. Hence only the canonical case remains, and Theorem~\ref{thm:commute} applies.
+\end{proof}
+
+For arbitrary $m\ge2$, \US\ implies $(U/U)\cap\Prim(K)=\varnothing$. For $m=2$ this condition is equivalent to \US, because both summands have dimension $n$. Moreover, if $m=2$, $1\in U$, and $U$ lies in a proper subfield $\F_{2^d}\subset K$, then $n\le d\le n$ and $U=S$. Thus a noncanonical normalized candidate generates $K$ as a field. This does not by itself give a full-degree element in $U$.
+
+\section{Conditional structural results}\label{sec:conditional}
+\subsection{Character sums and intersections with scalar subfields}
+We use the following external estimate, with its applicability checked in Appendix~\ref{app:external}. If $E=\F_{q^d}$, $t$ has degree $d$ over $\F_q$, and $\chi$ is a nontrivial multiplicative character of $E$, then
+\begin{align}
+\left|\sum_{x\in\F_q}\chi(t+x)\right|&\le(d-1)\sqrt q,\label{eq:pure}\\
+\left|\sum_{x\in\F_q}\chi(t+x)\psi(x)\right|&\le d\sqrt q\label{eq:mixed}
+\end{align}
+for every additive character $\psi$ of $\F_q$. For nontrivial $\psi$, the second estimate is the linear specialization of Fu--Wan, corrected version, Theorem 4.6 \cite{fuwan}; for trivial $\psi$ it follows from \eqref{eq:pure}. The latter is Katz's estimate \cite{katz}, also stated in \cite[Theorem 2.6]{reis}, or follows from \cite[Theorem 4.5]{fuwan} in this specialization.
+
+Put $q=2^n$, $K=\F_{q^2}$ and $S=\F_q$. Let $W$ be a binary subspace of $S$ and $t\in K\setminus S$. Additive orthogonality gives
+\[
+\sum_{w\in W}\chi(t+w)=\frac{|W|}{q}
+\sum_{a\in W^\perp}\sum_{x\in S}\chi(t+x)(-1)^{\Tr_{S/\F_2}(ax)},
+\]
+where $W^\perp=\{a\in S:\Tr_{S/\F_2}(aW)=0\}$. Since $|W^\perp|=q/|W|$, \eqref{eq:mixed} gives
+\begin{equation}\label{eq:subspacesum}
+\left|\sum_{w\in W}\chi(t+w)\right|\le2\sqrt q.
+\end{equation}
+Keeping the sharper trivial-additive-character term improves the right side to $(2-|W|/q)\sqrt q$, although the simpler bound suffices below.
+
+Write $B(M)=2^{\omega(M)}$, where $\omega$ is the number of distinct prime factors, and $\theta(M)=\varphi(M)/M$. For $z\ne0$ the primitive-element indicator is
+\begin{equation}\label{eq:indicator}
+\mathbf1_{\Prim(E)}(z)=\theta(M)\sum_{e\mid M}\frac{\mu(e)}{\varphi(e)}
+\sum_{\ord\chi=e}\chi(z),\qquad M=|E|-1.
+\end{equation}
+For clarity, in a cyclic group this identity follows by writing $z=g^k$: the character sum factorizes over primes $p\mid M$ into $1-c_p(k)/(p-1)$, which is zero when $p\mid k$ and $p/(p-1)$ otherwise. Multiplication by $\theta(M)$ proves the indicator formula.
+
+Applying \eqref{eq:subspacesum} to \eqref{eq:indicator}, with $M=q^2-1$, gives the lower bound
+\begin{equation}\label{eq:primitivecount}
+\#(\Prim(K)\cap(t+W))\ge\theta(M)
+\bigl(|W|-2\sqrt q\,[B(M)-1]\bigr).
+\end{equation}
+There is no zero in $t+W$. Each nontrivial squarefree divisor contributes at most $2\sqrt q$ in absolute value after its $\varphi(e)$ characters cancel the denominator; there are $B(M)-1$ such divisors.
+
+\begin{theorem}[Theorem A: necessary intersection bound]\label{thm:A}
+Suppose $m=2$ and an $n$-dimensional $U\subset\F_{2^{2n}}$ satisfies \US\ but is not canonical. Then, for every $c\ne0$,
+\begin{equation}\label{eq:A}
+2^{\dim(U\cap cS)}\le2\sqrt q\,[2^{\omega(q^2-1)}-1],\qquad q=2^n.
+\end{equation}
+In particular,
+\[
+\dim(U\cap cS)\le\frac n2+1+\log_2(2^{\omega(2^{2n}-1)}-1).
+\]
+\end{theorem}
+\begin{proof}
+The zero-intersection case is immediate. Otherwise choose $0\ne u_0\in U\cap cS$ and put $V=u_0^{-1}U$. Then $1\in V$ and $W=V\cap S$ has dimension $\dim(U\cap cS)$, since $u_0S=cS$. Noncanonicity gives $t\in V\setminus S$. The affine space $t+W$ lies in $V$ and contains no primitive element: a primitive element of $V$, together with $1\in V$, would give a primitive ratio. Now \eqref{eq:primitivecount} proves \eqref{eq:A}.
+\end{proof}
+Since $\omega(M)=o(\log M)$, a sequence of noncanonical universal spaces would have $\max_c\dim(U\cap cS)\le n/2+o(n)$. The number-theoretic estimate follows, for example, because the product of $k$ distinct primes is at least $k!$, so $k\log k=O(\log M)$.
+
+\begin{corollary}[Corollary A1: analytic range]\label{cor:A1}
+For $n\ge19$ and $m=2$, if $U$ satisfies \US\ and $\dim(U\cap cS)\ge n-1$ for some $c\ne0$, then $U=cS$.
+\end{corollary}
+\begin{proof}
+For every odd positive integer $M$,
+\[
+B(M)\le CM^{1/6},\quad
+C=\prod_{\substack{p<64\\p\text{ odd prime}}}\frac2{p^{1/6}}<2^{9/2}.
+\]
+Indeed, primes $p\ge64$ contribute at most one to $B(M)/M^{1/6}$; prime powers only reduce the ratio. The 17 odd primes below 64 have product $58644190679703485491635>2^{75}$, so $C^6<2^{102-75}=2^{27}$. For $M=q^2-1$,
+\[
+2\sqrt q\,[B(M)-1]<2^{11/2+5n/6}.
+\]
+If $n\ge39$, then $n-1\ge11/2+5n/6$, contradicting Theorem~\ref{thm:A} unless $U$ is canonical. For $19\le n\le38$, exact factorizations supplied in the evidence verify
+\begin{equation}\label{eq:bridge}
+2^{n-4}>(2^{\omega(2^{2n}-1)}-1)^2.
+\end{equation}
+This is precisely the squared inequality $2^{n-1}>2\sqrt q[B(M)-1]$. The prime factors, their primality by trial division, and \eqref{eq:bridge} are checked by the verifier. Their $\omega$ values are listed in Appendix~\ref{app:arithmetic}.
+\end{proof}
+
+\begin{corollary}[Corollary A2: all dimensions; computer-assisted]\label{cor:A2}
+For every $n\ge1$, if $m=2$, $U$ satisfies \US, and $\dim(U\cap cS)\ge n-1$ for some $c\ne0$, then $U=cS$.
+\end{corollary}
+\begin{proof}
+For $n=1$ every one-dimensional space is canonical; for $n\ge19$ use Corollary~\ref{cor:A1}. For $2\le n\le18$, a noncanonical candidate has intersection a hyperplane. Scaling first by $c^{-1}$ and then by an element of $S^*$ normalizes that intersection to
+\[
+W=\ker\Tr_{S/\F_2}.
+\]
+This uses nondegeneracy of the trace pairing: every hyperplane is $\ker\Tr_{S/\F_2}(\lambda x)$ for some $\lambda\ne0$.
+
+Choose $\delta\in S$ with $\Tr_{S/\F_2}(\delta)=1$ and represent $K=S[z]$, $z^2+z=\delta$. Every normalized noncanonical candidate is uniquely
+\begin{equation}\label{eq:nearspaces}
+U_{b,h}=W\oplus\F_2(h\delta+bz),\qquad b\in S^*,\quad h\in\{0,1\}.
+\end{equation}
+There are $2(q-1)$ such spaces, since $S/W$ has the representatives $0,\delta$.
+
+For $\beta=r+sz$ primitive, $s\ne0$. Define, with all traces to $\F_2$,
+\[
+T_0=\Tr(b/s),\quad T_1=\Tr(rb/s),\quad T_2=\Tr(b),\quad
+T_3=\Tr((r^2/s+r+s\delta)b).
+\]
+A direct calculation, proved in Appendix~\ref{app:det}, gives
+\begin{equation}\label{eq:det}
+U_{b,h}\cap\beta U_{b,h}=\{0\}
+\ \Longleftrightarrow\
+(T_1+T_2+h)(T_1+h)+T_0T_3=1.
+\end{equation}
+For each $n=2,\ldots,18$, the supplied JSON contains a short list of primitive $\beta$ values for which no pair $(b,h)$ satisfies \eqref{eq:det} for every list entry. The verifier certifies the field arithmetic, the complete factorization of $q^2-1$, and the multiplicative order of every $\beta$, and checks every one of the $2(q-1)$ pairs. Thus these are complete finite exclusion certificates, not samples. This proves the remaining cases.
+\end{proof}
+
+\begin{remark}[Prime orders]
+The same method as Theorem~\ref{thm:A} proves, for any prime $m$ and noncanonical $U$ satisfying \US\ in $K=\F_{q^m}$,
+\[
+2^{\dim(U\cap c\F_q)}\le m\sqrt q[2^{\omega(q^m-1)}-1].
+\]
+Here $t\notin\F_q$ has degree $m$ because $m$ is prime, and \eqref{eq:mixed} has constant $m$. For composite $m$, that full-degree assertion can fail, so the displayed extension is not claimed without an additional hypothesis.
+\end{remark}
+
+\subsection{Spaces over a sufficiently large scalar field}
+The scalar field of $U$ is $L(U)=\{a\in K:aU\subseteq U\}$. It is a subfield: addition and multiplication preserve $U$; a nonzero scalar acts bijectively on the finite set $U$, so its inverse also preserves $U$. If $L(U)=\F_{2^s}$, then $s\mid n$.
+
+\begin{theorem}[Theorem B]\label{thm:B}
+Fix $r\ge2$, put $q_0=2^s$, $n=rs$, and $K=\F_{q_0^{2r}}$. Suppose $U$ is $r$-dimensional over $\F_{q_0}$ and satisfies \US\ for $m=2$. If
+\begin{equation}\label{eq:B}
+q_0>\omega(2r),\qquad
+\sqrt{q_0}>(2r-1)[2^{\omega(q_0^{2r}-1)}-1],
+\end{equation}
+then $U=c\F_{q_0^r}$. For each fixed $r$, these inequalities hold for all sufficiently large $s$.
+\end{theorem}
+\begin{proof}
+Scale so $1\in U$. If $U$ is noncanonical, it lies in no proper intermediate field of $K/\F_{q_0}$: such a field has dimension at most $r$, and equality with $U$ would give the unique middle field. Each intersection of $U$ with a maximal proper intermediate field has dimension at most $r-1$ over $\F_{q_0}$. There are $\omega(2r)$ such fields. The first inequality in \eqref{eq:B} therefore ensures an element $t\in U$ in none of them, that is, of degree $2r$ over $\F_{q_0}$. Now $t+\F_{q_0}\subset U$. Estimate \eqref{eq:pure} with $d=2r$ and the primitive indicator show that the second inequality forces a primitive element on this line, contradicting the primitive-ratio restriction. Finally $2^{\omega(M)}=M^{o(1)}$; with $r$ fixed and $M=q_0^{2r}-1$, the right side in the second inequality is $q_0^{o(1)}$, proving the eventual assertion.
+\end{proof}
+The scalar-linearity hypothesis is essential to this argument. It does not classify arbitrary binary spaces. In particular, along a hypothetical sequence of noncanonical universal spaces with $n\to\infty$, $[L(U):\F_2]/n$ must tend to zero: a subsequence bounded away from zero would have bounded integer $r=n/[L(U):\F_2]$ and violate Theorem~\ref{thm:B}.
+
+\subsection{Frobenius symmetry and its limits}
+Let $\Split(U,\beta)$ denote the direct sum in \eqref{eq:US} for that $\beta$. Then
+\begin{equation}\label{eq:frob}
+\Split(cU,\beta)\Longleftrightarrow\Split(U,\beta),\qquad
+\Split(U^{[2]},\beta^2)\Longleftrightarrow\Split(U,\beta).
+\end{equation}
+Thus \US\ is invariant under the scalar/Frobenius action on spaces. For a fixed $U$, testing only one Frobenius conjugate of $\beta$ is justified only when an appropriate projective stabilizer is known. For example, in $\F_{16}=\F_2[a]/(a^4+a+1)$, $U=\Span\{1,a\}$ does not split at $a$, but does split at its conjugate $a^2$, with basis $1,a,a^2,a^3$.
+
+\begin{theorem}[Theorem C]\label{thm:C}
+Suppose $m=2$ and $U^{[2]}=cU$ for some $c\ne0$. Then $U$ is canonical if either (i) $n$ is a power of $2$, or (ii) $n=p^b$ is an odd prime power with $\ord_{p^b}(2)=\varphi(p^b)$. In particular, (ii) includes every $n=3^b$. No \US\ assumption is needed for this theorem.
+\end{theorem}
+\begin{proof}
+The space $V=c^{-1}U$ satisfies $V^{[2]}=V$. Write $\sigma(x)=x^2$. By the normal basis theorem, $K$, as a module for $\sigma$, is the cyclic module $\F_2[X]/(X^{2n}-1)$. Its invariant subspaces of dimension $n$ are the kernels of $h(\sigma)$ for the monic divisors $h$ of degree $n$ of $X^{2n}-1$.
+
+If $n=2^a$, this polynomial is $(X+1)^{2n}$, with a unique divisor of degree $n$, namely $X^n-1$. Its kernel is $\F_{2^n}$.
+
+In case (ii), the order hypothesis implies that each cyclotomic polynomial $\Phi_{p^i}$, $1\le i\le b$, is irreducible over $\F_2$: the Frobenius orbit of a primitive $p^i$-th root has length $\ord_{p^i}(2)=\varphi(p^i)$. The irreducible factors of $X^n-1$ thus have degrees $1,(p-1),(p-1)p,\ldots,(p-1)p^{b-1}$, once each, and all occur twice in $X^{2n}-1$. If a degree-$n$ divisor has multiplicities $e_0,\ldots,e_b\in\{0,1,2\}$, reduction modulo $p-1$ gives $e_0=1$. Dividing the remaining degree equation by $p-1$ gives
+\[
+\sum_{i=1}^b e_i p^{i-1}=1+p+\cdots+p^{b-1}.
+\]
+Uniqueness of base-$p$ digits gives $e_i=1$ for all $i$. The divisor is again $X^n-1$, so $V=\F_{2^n}$. For $p=3$, the order condition holds for all $b$: induction gives $v_3(2^{2\cdot3^{b-1}}-1)=b$, starting with $2^2-1=3$, and hence order $2\cdot3^{b-1}$.
+\end{proof}
+The action on the set of solutions does not imply that each individual solution satisfies $U^{[2]}=cU$. Moreover, arbitrary Frobenius-invariant half-dimensional spaces need not be subfields. For $n=7$, the kernel of
+\[
+h(\sigma),\qquad h(X)=(X+1)(X^3+X+1)^2
+\]
+has dimension $7$ in $\F_{2^{14}}$, is Frobenius invariant, and is not $\F_{128}$, since $h\ne X^7-1$. In the polynomial model with modulus \texttt{4443}, this kernel contains $1$ and the primitive element encoded by $252$ (exponent $2090$ of the primitive root), so it fails \US. The example illustrates the limitation of the symmetry argument.
+
+\section{Exact computational verification}\label{sec:computation}
+\subsection{Original exhaustive enumeration}
+Every nonzero $U$ can be scaled to contain $1$, and the only canonical space containing $1$ is $S$ itself. Such spaces are the $(n-1)$-spaces in $K/\F_2$, and their number is
+\begin{equation}\label{eq:gaussian}
+\begin{bmatrix}N-1\\n-1\end{bmatrix}_2
+=\frac{\prod_{i=0}^{n-2}(2^{N-1-i}-1)}{\prod_{i=0}^{n-2}(2^{n-1-i}-1)}.
+\end{equation}
+The original enumeration uses unique reduced bases with lowest pivots. For each noncanonical candidate, it tries primitive $\beta=\alpha^d$, in increasing $d$ coprime to $2^N-1$, until
+\[
+\operatorname{rank}_{\F_2}\{\beta^\ell b_j:0\le\ell<m,\ 1\le j\le n\}<N.
+\]
+The first failing exponent rejects that space. The cached exponent list recorded in the evidence is a finite witness set covering all noncanonical candidates. The canonical candidate is accepted by Theorem~\ref{thm:commute}, not by an unsupported assumption or by a claim that every exponent was tested on it. Counts are checked against \eqref{eq:gaussian}.
+
+\begin{center}\small
+\begin{tabular}{rrrrrr}
+\toprule
+$N$&$n$&$m$&Modulus (hex)&Normalized spaces&Cached exponents\\\midrule
+4&2&2&\texttt{13}&7&2\\
+6&2&3&\texttt{43}&31&7\\
+6&3&2&\texttt{43}&155&5\\
+8&2&4&\texttt{11d}&127&5\\
+8&4&2&\texttt{11d}&11,811&6\\
+9&3&3&\texttt{211}&10,795&13\\
+10&2&5&\texttt{409}&511&12\\
+10&5&2&\texttt{409}&3,309,747&10\\
+12&2&6&\texttt{1053}&2,047&13\\
+12&3&4&\texttt{1053}&698,027&12\\
+14&2&7&\texttt{4443}&8,191&10\\
+16&2&8&\texttt{1100b}&32,767&13\\
+18&2&9&\texttt{40081}&131,071&15\\
+20&2&10&\texttt{100009}&524,287&20\\\bottomrule
+\end{tabular}
+\end{center}
+There are $4,729,574$ normalized spaces in this table. Each row has exactly one survivor, the subfield. The code supplied here reproduces this enumeration and records the rejecting exponents, not just their number.
+
+\subsection{Exact pruning for the quadratic-extension case}
+For a binary space, $(U/U)\setminus\{0,1\}$ is invariant under $t\mapsto t+1$ and $t\mapsto1/t$. Their six transformations are
+\begin{equation}\label{eq:six}
+t,\quad t+1,\quad1/t,\quad1+1/t,\quad1/(t+1),\quad1+1/(t+1).
+\end{equation}
+Let $\mathcal B$ be the union of these transforms of all primitive elements of $K=\F_{2^{2n}}$, and set $\mathcal A=K\setminus\mathcal B$, including $0,1$. Since the transformations form a group, $U/U$ avoids primitive elements if and only if it avoids $\mathcal B$.
+
+The pruned search starts with $\{0,1\}$ and grows a unique reduced basis with increasing highest pivot bits and zero entries at earlier pivot positions. Suppose the current space is $U$, and a new basis vector $x$ is proposed. Check that every $z\in x+U$ is compatible with every $w\in U^*$, meaning $z/w\in\mathcal A$. These checks also cover new--new pairs: for distinct $z_1,z_2\in x+U$, $w=z_1+z_2\in U^*$ and
+\[
+z_1/z_2=(z_1/w)/(z_1/w+1),
+\]
+which is a transform in \eqref{eq:six}. Thus an accepted extension has all ratios in $\mathcal A$.
+
+Maintain the common compatible pool $C=\bigcap_{w\in U^*}w\mathcal A$. Update it by intersecting with $z\mathcal A$ for all new nonzero $z$. Every valid completion must lie in $C$, so a pool with fewer than $2^n$ elements can be pruned. The basis pivot bounds leave enough positions for completion. Every normalized space has one such reduced basis, and every prefix of a valid space passes these tests. This proves completeness: the pruning cannot remove a universal space.
+
+Two implementations, using bit sets and ordinary sets respectively, produced identical survivor sets for all $2\le n\le10$. The ordinary-set implementation additionally uses the pool-cardinality bound. The field constructor checks a full cycle of length $2^{2n}-1$ for $X$ modulo the stated polynomial: all nonzero residues are then powers of an invertible element, certifying both that the quotient is a field and that $X$ is primitive. The final survivor is compared as a whole set with the roots of $X^{2^n}-X$.
+
+\begin{center}\small
+\begin{tabular}{rrrr}
+\toprule
+$n$&$m$&Modulus (hex)&Normalized survivors\\\midrule
+2&2&\texttt{13}&1\\3&2&\texttt{43}&1\\4&2&\texttt{11d}&1\\5&2&\texttt{409}&1\\
+6&2&\texttt{1053}&1\\7&2&\texttt{4443}&1\\8&2&\texttt{1100b}&1\\
+9&2&\texttt{40081}&1\\10&2&\texttt{100009}&1\\\bottomrule
+\end{tabular}
+\end{center}
+Together the two tables establish nineteen distinct parameter pairs. These are finite computer-assisted proofs, not a proof of \eqref{eq:classification} for arbitrary parameters.
+
+\subsection{Independent comparisons and reproducibility}
+For $n=2,3,4$ and $m=2$, complete independent enumeration checked all $7$, $155$, and $11,811$ normalized spaces. For every space, the six-transform ratio test agreed with the direct universal rank predicate, evaluated until its first failure; its survivors also agreed with the pruned search. These are independent checks of the search logic, although the implementations share basic field arithmetic. As an additional independent check of that arithmetic, all $69,888$ products in the three field models of sizes $16$, $64$ and $256$ agreed with direct polynomial multiplication and reduction.
+
+The near-subfield certificates were checked for every $n=2,\ldots,18$, covering $1,048,534$ candidates in total. Direct binary ranks independently checked the determinant formula for every candidate encountered in certificate verification at $n=2,3,4$. All arithmetic and order checks in these certificates are exact. The floating-point character-sum checks at $q=4,8$ are only numerical consistency checks, with tolerance $10^{-8}$, and are not used as proof.
+
+The supplied Python file uses only the Python 3.10+ standard library. Keep it beside the supplied JSON and run without \texttt{-O}; the script refuses optimized execution because assertions perform certificate checks. Reproduction commands and evidence organization appear in Appendix~\ref{app:reproduce}.
+
+\section{Remaining implication and unsuccessful reductions}\label{sec:open}
+For $n=2$, normalize $U=\Span\{1,t\}$ and put $V_m(\beta)=\Span\{1,\beta,\ldots,\beta^{m-1}\}$. Splitting for this $\beta$ is equivalent to
+\[
+t\notin\{f(\beta)/g(\beta):f,g\in\F_2[X],\ \deg f,\deg g<m,\ g\ne0\}.
+\]
+This exact formulation has not yielded a general proof here. Primitive-free ratios alone are insufficient when $m>2$.
+
+For example, in $\F_{256}=\F_2[a]/(a^8+a^4+a^3+a^2+1)$, take $t=a^5+a^2$ (integer encoding $36$). Its six transforms have encodings $36,37,86,87,96,97$ and orders $17,85,85,85,17,85$. All have full degree $8$, yet none is primitive. Moreover, for $U=\Span\{1,36\}$, $m=4$, and the primitive $\beta$ encoded by $4$,
+\[
+37+36\beta+37\beta^3=0.
+\]
+Thus the primitive-ratio test passes but \US\ fails. In $\F_{64}$ with modulus \texttt{43}, the proper-subfield candidate $U=\Span\{1,24\}\subset\F_8$ likewise has no primitive ratio, but the primitive $\beta$ encoded by $35$ has $25+24\beta+24\beta^2=0$, so it fails for $m=3$.
+
+The general classification is also the subject of the earlier question \cite{goltvanitsa}; that reference is background, not a theorem resolving it. No argument in this report proves that an arbitrary \US\ space has the extra intersection, scalar-linearity, or projective Frobenius hypotheses of our conditional results.
+
+\section{Conclusion and assistance disclosure}
+The desired commutativity is equivalent to \eqref{eq:classification}. We prove the elementary case $n=m=2$, conditional structural theorems, the shared-hyperplane classification for $m=2$ in every dimension (with certified finite cases), and nineteen finite parameter pairs. \textbf{The unrestricted problem remains unresolved by this submission.}
+
+Python was used for exact finite-field arithmetic, exhaustive searches, and certificate verification. Generative AI tools, including Claude, DeepSeek, and OpenAI Codex/ChatGPT, assisted with exploration, code, proof checking, consolidation, and typesetting. The mathematical assertions are accompanied by proofs or identified computational verifications; AI output is not treated as an authority. No AI system is listed as an author. The named human authors retain responsibility for final review and submission.
+
+\begin{thebibliography}{9}
+\bibitem{problem} NSUCRYPTO 2026, Second Round, Problem 9, \emph{Vector LRS}, supplied problem statement, 12--19 October 2026.
+\bibitem{fuwan} L. Fu and D. Wan, \emph{A Class of Incomplete Character Sums}, Quarterly Journal of Mathematics \textbf{65} (2014), 1195--1211. For the theorem statements used here, see the corrected arXiv version v3, 6 January 2025, Theorems 4.5--4.6. \url{https://arxiv.org/abs/1303.3650v3}.
+\bibitem{katz} N. M. Katz, \emph{An estimate for character sums}, Journal of the American Mathematical Society \textbf{2} (1989), 197--200. The estimate is also explicitly stated in \cite[Theorem 2.6]{reis}.
+\bibitem{reis} L. Reis, \emph{Character sums over affine spaces and applications}, arXiv:2007.04859, version consulted: v1, 9 July 2020. \url{https://arxiv.org/abs/2007.04859v1}.
+\bibitem{goltvanitsa} M. Goltvanitsa, \emph{Splitting subspaces and finite fields}, MathOverflow question 230767, 10 February 2016. \url{https://mathoverflow.net/questions/230767}.
+\bibitem{outline} NSUCRYPTO, \emph{Participation outline}, consulted 19 October 2026. \url{https://nsucrypto.nsu.ru/outline/}.
+\end{thebibliography}
+
+\clearpage
+\appendix
+\section{External-estimate hypotheses}\label{app:external}
+For \eqref{eq:mixed} with nontrivial additive $\psi$, specialize \cite[Theorem 4.6, v3]{fuwan} to extension degree $d$, $f(X)=t+X$, and $g(X)=\kappa X$, where $\Tr_{\F_{q^d}/\F_q}(\kappa)=1$. The trace map is surjective, so such $\kappa$ exists even when the characteristic divides $d$. The degree parameters are $D_1=D_2=1$, $D_3=D_4=0$, yielding $d\sqrt q$. The rational function $\Tr(g)=X$ has a simple pole at infinity and cannot be $r^p-r$ over the algebraic closure: a pole of a nonconstant $r^p-r$ has order divisible by $p$. Scaling by the nonzero coefficient defining a nontrivial additive character leaves a simple pole. Thus no additive-character degeneracy is hidden.
+
+For \eqref{eq:pure}, the product required in \cite[Theorem 4.5]{fuwan} is $\prod_{i=0}^{d-1}(X^{q^i}+t)$. As $t$ has degree $d$, its conjugate inverse-Frobenius roots are distinct, and the root $X=-t$ has multiplicity exactly $1$ (only the $i=0$ factor vanishes there). The product is therefore not an $\ord(\chi)$-th power for nontrivial $\chi$. There are no poles or zeros on the summation set $\F_q$. The resulting constant is $d-1$.
+
+These arguments check applicability of the cited estimates. They do not claim to reprove the underlying cohomological theorem. No assertion relies on the numerical character-sum tests as a substitute.
+
+\section{Determinant certificate derivation}\label{app:det}
+In the notation of \eqref{eq:nearspaces}, put $a=h\delta$. An element of $U_{b,h}$ is $u=w+\epsilon(a+bz)$, with $w\in W$ and $\epsilon\in\F_2$. Requiring
+\[
+(r+sz)u=w'+\epsilon'(a+bz),\quad w'\in W,\quad\epsilon'\in\F_2,
+\]
+and comparing $z$-coordinates, using $z^2=z+\delta$, gives
+\[
+w=\epsilon((r/s+1)b+a)+\epsilon'b/s.
+\]
+The constant coordinate then gives
+\[
+w'=\epsilon(r^2/s+r+s\delta)b+\epsilon'(rb/s+a).
+\]
+The equations $\Tr(w)=\Tr(w')=0$ are
+\[
+\begin{pmatrix}T_1+T_2+h&T_0\\T_3&T_1+h\end{pmatrix}
+\binom{\epsilon}{\epsilon'}=\binom00.
+\]
+A nonzero solution gives a nonzero $u$: if $\epsilon=1$, its $z$-coordinate is $b\ne0$; if $\epsilon=0,\epsilon'=1$, then $w=b/s\ne0$. The zero solution gives only $u=0$. Thus a zero intersection is equivalent to determinant $1$, proving \eqref{eq:det}.
+
+For $n=2,\ldots,18$, respectively, the certificate lists have
+\[
+2,3,4,5,6,7,9,11,11,11,13,14,17,17,18,17,18
+\]
+primitive test elements. The evidence specifies the base-field modulus, $\delta$, complete prime-factor set, each pair $(r,s)$, and each surviving-candidate count. The verifier checks $\beta^{q^2-1}=1$ and $\beta^{(q^2-1)/p}\ne1$ for every prime divisor $p$, as well as the complete factorization and irreducibility of the quadratic model via $\Tr(\delta)=1$. Random choices were used to discover short witness lists; verification of the supplied lists and their coverage is deterministic and exact.
+
+\section{Arithmetic bridge}\label{app:arithmetic}
+For $n=19,\ldots,38$, the values of $\omega(2^{2n}-1)$ are
+\[
+3,7,6,7,4,9,7,7,6,8,6,11,3,7,8,7,9,12,5,7.
+\]
+The code contains all factorizations with multiplicity, multiplies them back to $2^{2n}-1$, and proves each factor prime by trial division through its integer square root. It checks \eqref{eq:bridge} using integer arithmetic. It also enumerates all odd primes below $64$ and verifies the product bound used in Corollary~\ref{cor:A1}. There is no probable-prime test in the certificate verifier.
+
+\section{Reproduction and evidence organization}\label{app:reproduce}
+Place \texttt{vector\_lrs\_m2\_verify.py} and \texttt{vector\_lrs\_evidence.json} in one directory. Run with Python 3.10 or later, without optimization:
+\begin{verbatim}
+python vector_lrs_m2_verify.py --validate --output small.json
+python vector_lrs_m2_verify.py --near-subfield --output near.json
+python vector_lrs_m2_verify.py --original --output original.json
+python vector_lrs_m2_verify.py --output quadratic.json
+python vector_lrs_m2_verify.py --engine bitsets --output bitsets.json
+\end{verbatim}
+The first command compares complete small enumerations, direct ranks and ratio tests, and performs the numerical character-sum checks. The second validates every near-subfield certificate. The third reruns the fourteen original cases. The fourth reruns all nine quadratic-extension cases $n=2,\ldots,10$ with ordinary sets. The last is an alternative, slower, exact implementation. The arithmetic bridge is verified at startup for each command. Run logs and the accompanying verification summary identify which checks were repeated during final preparation; historical runs remain separately identified in the evidence. Timings are machine-dependent and are not proof certificates.
+
+A modulus encoded by hexadecimal integer $f=\sum f_i2^i$ represents $\sum f_iX^i\in\F_2[X]$. Field elements use the same binary coefficient encoding. Near-subfield extension elements use a pair $(r,s)$ for $r+sz$. The final data retain the supplied evidence, with a separate final-audit record and file hashes; no historical record is silently relabeled as a fresh run.
+
+\section{Audit conclusions}\label{app:audit}
+\textbf{Finite-field reformulation}. Hypotheses: maximum period, linear order-$m$ recurrence and coprime decimations. Both directions and realization of arbitrary \US\ spaces are proved in Proposition~\ref{prop:reform}. No search or external theorem is needed beyond elementary finite fields and the trace pairing.
+
+\begin{samepage}
+\textbf{Commutativity equivalence}. Hypotheses: maximum period and its splitting basis. The transpose convention, unital algebra embedding, dimension divisibility and centralizer argument are explicit in Theorem~\ref{thm:commute}. The implication \US\ to canonicity is not assumed.
+\end{samepage}
+
+\begin{samepage}
+\textbf{$n=m=2$}. The elementary order argument is valid, with $t\notin\F_4$, $t+1\ne0,1$ and all possible orders checked. It is independent of computational evidence.
+\end{samepage}
+
+\begin{samepage}
+\textbf{Theorem A}. All normalization and full-degree hypotheses are stated; the external mixed estimate is checked in Appendix~\ref{app:external}. The primitive indicator and orthogonality argument are explicit. The result is necessary, not sufficient.
+\end{samepage}
+
+\begin{samepage}
+\textbf{Corollary A1}. The large-$n$ bound and strict inequality at $n=39$ are valid. The finite bridge uses exact, fully factored integers checked by trial division; see Appendix~\ref{app:arithmetic}.
+\end{samepage}
+
+\begin{samepage}
+\textbf{Corollary A2}. Requires the additional intersection hypothesis. Its finite reduction is exhaustive after scaling; the determinant formula is proved, and all finite certificates are reproducible. It is labeled computer-assisted.
+\end{samepage}
+
+\begin{samepage}
+\textbf{Theorem B}. Requires an actual $\F_{q_0}$-linear structure and both explicit inequalities. Counting intermediate fields supplies an element of full degree. The sufficiently-large-field assertion holds only at fixed relative dimension.
+\end{samepage}
+
+\begin{samepage}
+\textbf{Theorem C}. Requires $U^{[2]}=cU$ and the stated parameter restrictions. Normalization, cyclic-module classification and irreducible-factor degrees are justified. Global invariance of \US\ does not supply this individual fixed-space hypothesis.
+\end{samepage}
+
+\begin{samepage}
+\textbf{Exhaustive searches}. Both enumerations have unique reduced bases; every pruning step preserves possible completions. Field cycles, expected counts where applicable, primitive exponents and canonical survivors are checked. Runtime records are distinguished from finite certificate data.
+\end{samepage}
+
+\begin{samepage}
+\textbf{Numerical observations}. Floating-point character-sum checks and failed-shortcut examples are not promoted to unrestricted theorems. The general classification remains open in this submission.
+\end{samepage}
+
+
+\section{Additional necessary conditions}
+If $t\in(U/U)\setminus\{0\}$ has multiplicative index
+$e=(2^{nm}-1)/\ord(t)<m$, then $U$ cannot satisfy \US.
+Indeed $t=\beta^e$ for a primitive $\beta$: in a cyclic group of order $M$, reduction of units modulo $M$ onto units modulo $M/e$ is surjective, by the Chinese remainder theorem. A generator of the subgroup of order $M/e$ therefore lifts to an $e$-th power of a generator of the whole group. The equality $t=a/b$ gives $0\ne a\in U\cap\beta^eU$, contradicting directness. This restriction also applies to the six transforms of any nontrivial ratio. It is necessary, not sufficient.
+
+For $m=2$, put $q=2^n$ and $d_x=\dim(U\cap xU)$ for $x\in K^*$. A second exact necessary condition is
+\[
+\sum_{\substack{x\ne1\\d_x\ge2}}(2^{d_x}-2)
+\ge\varphi(q^2-1)-3q+4.
+\]
+To see this, count ordered distinct nonzero pairs in $U$ by their ratio:
+$\sum_{x\ne1}(2^{d_x}-1)=(q-1)(q-2)$.
+At most $q^2-2-\varphi(q^2-1)$ nonprimitive $x\ne1$ can have positive $d_x$. Subtracting this bound on the support gives the displayed inequality. Its right side is positive for $n\ge3$: check $n=3,4,5$, where the totients are $36,128,600$; for $n\ge6$, use $\varphi(M)\ge M/(1+\log_2 M)$ and $2^n>6n+3$. The totient bound follows by listing the prime divisors $p_i\ge i+1$, which gives $M/\varphi(M)\le\prod_{i=1}^k(i+1)/i=k+1\le1+\log_2 M$. Hence a universal space with $n\ge3$ has at least one nontrivial scalar intersection of dimension at least two. This does not force canonicity.
+
+\end{document}

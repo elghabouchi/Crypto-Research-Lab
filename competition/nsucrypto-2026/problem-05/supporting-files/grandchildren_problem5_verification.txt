@@ -1,0 +1,9 @@
+{'ages': (2, 9, 6), 'home': 126, 'grandma': 29, 'step': 1, 'quotients': (63, 14, 21), 'passed': 96, 'gaps': 97, 'speed': '97/25'}
+{'ages': (2, 7, 7), 'home': 140, 'grandma': 27, 'step': 1, 'quotients': (70, 20, 20), 'passed': 112, 'gaps': 113, 'speed': '113/25'}
+{'ages': (6, 13, 9), 'home': 468, 'grandma': 613, 'step': 1, 'quotients': (78, 36, 52), 'passed': 144, 'gaps': 145, 'speed': '29/5'}
+{'ages': (13, 15, 9), 'home': 1170, 'grandma': 1315, 'step': 1, 'quotients': (90, 78, 130), 'passed': 144, 'gaps': 145, 'speed': '29/5'}
+{'ages': (11, 8, 10), 'home': 440, 'grandma': 118, 'step': 2, 'quotients': (40, 55, 44), 'passed': 160, 'gaps': 161, 'speed': '161/25'}
+{'ages': (15, 8, 10), 'home': 480, 'grandma': 158, 'step': 2, 'quotients': (32, 60, 48), 'passed': 160, 'gaps': 161, 'speed': '161/25'}
+ALL SIX ASSIGNMENTS PASS THE STATED NUMERICAL CHECKS.
+The text does not determine a unique age triple or key.
+296 is a possible age-concatenation key, not a forced key.

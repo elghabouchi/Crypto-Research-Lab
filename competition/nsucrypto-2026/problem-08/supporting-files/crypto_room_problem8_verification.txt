@@ -1,0 +1,23 @@
+p = 30041777; q = 5041523; e = 65537
+n = 151456309706371; phi = 151456274623072; d = 77487966921153
+e*d - 1 = 33530 * phi
+ 1 Left book 1    69cac604f3f6  574845561 b'"Cry'
+ 2 Left book 2    0037e3e277d0 1886678887 b'ptog'
+ 3 Left book 3    5bf4286560fd 1918988392 b'raph'
+ 4 Left book 4    7a78ae829dee 2032167283 b'y is'
+ 5 Left drawer    1160d891335b  544504176 b' typ'
+ 6 Right book 1   25aa4a80579b 1768120684 b'ical'
+ 7 Right book 2   465d1f5ae113 1819877474 b'ly b'
+ 8 Right book 3   3f268417e1bd 2037408115 b'ypas'
+ 9 Right book 4   751fb3515b44 1936024620 b'sed,'
+10 Right box      44a174ad7278  544108404 b' not'
+11 Left scroll    660301648837  544236910 b' pen'
+12 Hat            7a8d796a70ab 1702130273 b'etra'
+13 Open book      5c40bf50d20b 1952801838 b'ted.'
+14 Paper by cup   3932ff60773e  572534048 b'" - '
+15 Top frame      8649d2897de8 1097099552 b'Adi '
+16 Map            1d5a29213b82 1399349613 b'Sham'
+17 Front note     788f5bae6242 1769087008 b'ir  '
+Recovered 68 bytes: '"Cryptography is typically bypassed, not penetrated." - Adi Shamir  '
+All 17 original hexadecimal blocks reproduced exactly.
+Both primes verified by exhaustive trial division.

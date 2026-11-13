@@ -1,0 +1,14 @@
+N= 4 n=2 m= 2 f=13 spaces=7 survivors=1 max_tests=2 ds=[1, 2] basis=[1, 6] seconds=0.000
+N= 6 n=2 m= 3 f=43 spaces=31 survivors=1 max_tests=7 ds=[1, 2, 4, 5, 8, 10, 11] basis=[1, 58] seconds=0.001
+N= 6 n=3 m= 2 f=43 spaces=155 survivors=1 max_tests=5 ds=[1, 2, 4, 5, 8] basis=[1, 22, 24] seconds=0.005
+N= 8 n=2 m= 4 f=11d spaces=127 survivors=1 max_tests=5 ds=[1, 2, 4, 7, 8] basis=[1, 214] seconds=0.004
+N= 8 n=4 m= 2 f=11d spaces=11811 survivors=1 max_tests=6 ds=[1, 2, 4, 7, 8, 11] basis=[1, 146, 68, 152] seconds=0.300
+N= 9 n=3 m= 3 f=211 spaces=10795 survivors=1 max_tests=13 ds=[1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15] basis=[1, 332, 336] seconds=0.331
+N=10 n=2 m= 5 f=409 spaces=511 survivors=1 max_tests=12 ds=[1, 2, 4, 5, 7, 8, 10, 13, 14, 16, 17, 19] basis=[1, 236] seconds=0.018
+N=10 n=5 m= 2 f=409 spaces=3309747 survivors=1 max_tests=10 ds=[1, 2, 4, 5, 7, 8, 10, 13, 14, 16] basis=[1, 770, 84, 856, 352] seconds=79.998
+N=12 n=2 m= 6 f=1053 spaces=2047 survivors=1 max_tests=13 ds=[1, 2, 4, 8, 11, 16, 17, 19, 22, 23, 29, 31, 32] basis=[1, 70] seconds=0.073
+N=12 n=3 m= 4 f=1053 spaces=698027 survivors=1 max_tests=12 ds=[1, 2, 4, 8, 11, 16, 17, 19, 22, 23, 29, 31] basis=[1, 1798, 936] seconds=22.100
+N=14 n=2 m= 7 f=4443 spaces=8191 survivors=1 max_tests=10 ds=[1, 2, 4, 5, 7, 8, 10, 11, 13, 14] basis=[1, 10150] seconds=0.452
+N=16 n=2 m= 8 f=1100b spaces=32767 survivors=1 max_tests=13 ds=[1, 2, 4, 7, 8, 11, 13, 14, 16, 19, 22, 23, 26] basis=[1, 350] seconds=2.059
+N=18 n=2 m= 9 f=40081 spaces=131071 survivors=1 max_tests=15 ds=[1, 2, 4, 5, 8, 10, 11, 13, 16, 17, 20, 22, 23, 25, 26] basis=[1, 114586] seconds=8.754
+N=20 n=2 m=10 f=100009 spaces=524287 survivors=1 max_tests=20 ds=[1, 2, 4, 7, 8, 13, 14, 16, 17, 19, 23, 26, 28, 29, 32, 34, 37, 38, 43, 46] basis=[1, 810474] seconds=31.553

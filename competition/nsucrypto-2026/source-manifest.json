@@ -1,0 +1,295 @@
+{
+  "description": "Byte-preserving copies; source paths are relative to the supplied NSUCRYPTO folder. SHA-256 hashes identify original content. Renamed entry points do not change file contents.",
+  "files": [
+    {
+      "source": "problem/2026-nsucrypto-2-1.pdf",
+      "destination": "competition/nsucrypto-2026/problem-01/statement.pdf",
+      "sha256": "aeb08b90c86f850a31f2ba445ceeda7e9a890e05ff654d01e06cafe17ddde80c"
+    },
+    {
+      "source": "Solution/Problem 1/Solution_01_An_Ancient_Civilization.pdf",
+      "destination": "competition/nsucrypto-2026/problem-01/solution.pdf",
+      "sha256": "c58b8060b2b8fa2848e374e0620787387806773f9d1380cb620e8192db1a8714"
+    },
+    {
+      "source": "problem/2026-nsucrypto-2-2.pdf",
+      "destination": "competition/nsucrypto-2026/problem-02/statement.pdf",
+      "sha256": "af0e2659d30de72d6406f319982eaf2b85aff939997c91bdfd33ee4cca62ace2"
+    },
+    {
+      "source": "Solution/Problem 2 - RSA/Solution_02_Cryptanalysis_of_RSA.pdf",
+      "destination": "competition/nsucrypto-2026/problem-02/solution.pdf",
+      "sha256": "b4d0b64e0ed8046b0d3786b3ca15a4dd39dca1fd26fda2f3fcdcc30aec49a3cd"
+    },
+    {
+      "source": "Solution/Problem 2 - RSA/rsa_solution.py",
+      "destination": "competition/nsucrypto-2026/problem-02/supporting-files/rsa_solution.py",
+      "sha256": "45fb6b2b0cc007177b74a4f5415db822d6f15794e0d8cd8897ad3e97bb95dd3d"
+    },
+    {
+      "source": "Solution/Problem 2 - RSA/verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-02/supporting-files/verification.txt",
+      "sha256": "f63ede78955ca93ee4b6a54cc99f76d7b512f904338845ccd34ca829c2d061c0"
+    },
+    {
+      "source": "problem/2026-nsucrypto-2-3.pdf",
+      "destination": "competition/nsucrypto-2026/problem-03/statement.pdf",
+      "sha256": "8afae4851559a4f6e96f6f11413c6f971f3fa92eb91d31c8f01b0132677bc0f9"
+    },
+    {
+      "source": "Solution/Problem 3/Solution_03_BSW_Conjecture_Finite_Cases.pdf",
+      "destination": "competition/nsucrypto-2026/problem-03/solution.pdf",
+      "sha256": "a35b87c068763251cf74c2a87c5c9a00525e3c607724f7e36ad86faf8cf7d60d"
+    },
+    {
+      "source": "Solution/Problem 3/bsw_problem3_controls.txt",
+      "destination": "competition/nsucrypto-2026/problem-03/supporting-files/bsw_problem3_controls.txt",
+      "sha256": "005b75f99b74d4c5b141bb381df57299a20d1c92d6bf5bd39bc95483aab9e186"
+    },
+    {
+      "source": "Solution/Problem 3/bsw_problem3_independent.py",
+      "destination": "competition/nsucrypto-2026/problem-03/supporting-files/bsw_problem3_independent.py",
+      "sha256": "c4a4befd29dee69157c178a1a0b81feff89fda7114066ae58e9f0eb7b077e521"
+    },
+    {
+      "source": "Solution/Problem 3/bsw_problem3_independent_check.txt",
+      "destination": "competition/nsucrypto-2026/problem-03/supporting-files/bsw_problem3_independent_check.txt",
+      "sha256": "48bba396da7adeac787a249472767b108290daa15b988e63c6c0792d9689389d"
+    },
+    {
+      "source": "Solution/Problem 3/bsw_problem3_results.json",
+      "destination": "competition/nsucrypto-2026/problem-03/supporting-files/bsw_problem3_results.json",
+      "sha256": "563834a98dac0d82e7c025709c97e2814ce2fad6c1e69d01555dc6bb24300f37"
+    },
+    {
+      "source": "Solution/Problem 3/bsw_problem3_results.txt",
+      "destination": "competition/nsucrypto-2026/problem-03/supporting-files/bsw_problem3_results.txt",
+      "sha256": "0f5526933d9d827da4c8e3ca1647b717c47216108ba0144b804377f6a58edcf0"
+    },
+    {
+      "source": "Solution/Problem 3/bsw_problem3_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-03/supporting-files/bsw_problem3_verify.py",
+      "sha256": "95c6a3016ee12da6864890bb2c7fc032f9b6762a7ed7e52e312bdea28d72e801"
+    },
+    {
+      "source": "problem/2026-nsucrypto-2-4.pdf",
+      "destination": "competition/nsucrypto-2026/problem-04/statement.pdf",
+      "sha256": "9b6432b5fa9c0b594caf32021ad3426ff69675578995f390ab3bb90351f0da91"
+    },
+    {
+      "source": "Solution/Problem 4/Solution_04_Secret_Coding.pdf",
+      "destination": "competition/nsucrypto-2026/problem-04/solution.pdf",
+      "sha256": "f43029ea033ba026340469e3f5b891df093bc36d37c76e4417bec767e3f86a7c"
+    },
+    {
+      "source": "Solution/Problem 4/secret_coding_problem4_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-04/supporting-files/secret_coding_problem4_verification.txt",
+      "sha256": "91c77e5411cabce053678e1d1cc0b140b798747ea80c3d1146bd2e09cf627d04"
+    },
+    {
+      "source": "Solution/Problem 4/secret_coding_problem4_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-04/supporting-files/secret_coding_problem4_verify.py",
+      "sha256": "763f94a7296cedc66f0ae29c468d500a7dfc12f6b90a830870461ab5784d0956"
+    },
+    {
+      "source": "problem/2026-nsucrypto-2-5.pdf",
+      "destination": "competition/nsucrypto-2026/problem-05/statement.pdf",
+      "sha256": "655c4e8ed12ffebe608253ba2076ab2b1502ed4890bafaedce96d2f359a39830"
+    },
+    {
+      "source": "Solution/Problem 5/Solution_05_Grandchildren.pdf",
+      "destination": "competition/nsucrypto-2026/problem-05/solution.pdf",
+      "sha256": "62751af60450e5b8e62f90fec788a67a6d4ee271e423a7924d74781561206808"
+    },
+    {
+      "source": "Solution/Problem 5/grandchildren_problem5_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-05/supporting-files/grandchildren_problem5_verification.txt",
+      "sha256": "d4e8a2fbead983f2abb7eea5fa8f6a96d6d56b093e37410172dd6211d631d6f2"
+    },
+    {
+      "source": "Solution/Problem 5/grandchildren_problem5_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-05/supporting-files/grandchildren_problem5_verify.py",
+      "sha256": "9b61a45194ae6a8987ba04f6206ba9d55b3f0e90e0fe454df77526a8b6d65193"
+    },
+    {
+      "source": "problem/2026-nsucrypto-2-6.pdf",
+      "destination": "competition/nsucrypto-2026/problem-06/statement.pdf",
+      "sha256": "577c5a26af6d05c27641d8ef586ac9f33d82f94fc5a0287006eff2be2fe686e2"
+    },
+    {
+      "source": "Solution/Problem 6/Solution_06_Alice_in_the_Tweedleworld.pdf",
+      "destination": "competition/nsucrypto-2026/problem-06/solution.pdf",
+      "sha256": "6299865b47b599a09207403b264885ca3ebb57e71144032b95f7d867c90aa386"
+    },
+    {
+      "source": "Solution/Problem 6/tweedleworld_problem6_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-06/supporting-files/tweedleworld_problem6_verification.txt",
+      "sha256": "a31ef4da27c76fae4c585fab9035bc980274fe2b7ed5c95c9d99c0e3a7864c3d"
+    },
+    {
+      "source": "Solution/Problem 6/tweedleworld_problem6_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-06/supporting-files/tweedleworld_problem6_verify.py",
+      "sha256": "54d200d95ef435342d8eae68e843558106daff42fcd7e64c971aecefa3581846"
+    },
+    {
+      "source": "problem/Problem_07.pdf",
+      "destination": "competition/nsucrypto-2026/problem-07/statement.pdf",
+      "sha256": "e8eb8860a348a321f23b33c95880b67a54794aac97bc7725b5e973cf744497c3"
+    },
+    {
+      "source": "Solution/Problem 7/Solution_07_Sherlock_Holmes.pdf",
+      "destination": "competition/nsucrypto-2026/problem-07/solution.pdf",
+      "sha256": "1cede9e148a42705927b6f21bb8d71317b9afa1009ad5def36bb4569806c05a6"
+    },
+    {
+      "source": "Solution/Problem 7/sherlock_problem7_transaction.hex",
+      "destination": "competition/nsucrypto-2026/problem-07/supporting-files/sherlock_problem7_transaction.hex",
+      "sha256": "ab2b0e91c3a67232fd5b87bfa4dabf970ad96b4be4c273a85cbd43a42698b7c3"
+    },
+    {
+      "source": "Solution/Problem 7/sherlock_problem7_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-07/supporting-files/sherlock_problem7_verification.txt",
+      "sha256": "f6e81a38ca2dd2be9198476387de2f7d7a9e126ae9f259193e96467b6cdb448e"
+    },
+    {
+      "source": "Solution/Problem 7/sherlock_problem7_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-07/supporting-files/sherlock_problem7_verify.py",
+      "sha256": "b62d9074b95df3e38a72c2c2fe42df00b41da18d3b3a1e858fd66ec0cf6a316d"
+    },
+    {
+      "source": "problem/Problem_08.pdf",
+      "destination": "competition/nsucrypto-2026/problem-08/statement.pdf",
+      "sha256": "2b8628535e6f74f729c43ba75df5b01e011744fa3afcc61b4a5f131ef7adab9c"
+    },
+    {
+      "source": "Solution/Problem 8/Solution_08_Crypto_Room.pdf",
+      "destination": "competition/nsucrypto-2026/problem-08/solution.pdf",
+      "sha256": "5e56b78d9fe35fb5b754d1971ec3688598478abcd449191021904b054733f4ab"
+    },
+    {
+      "source": "Solution/Problem 8/crypto_room_problem8_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-08/supporting-files/crypto_room_problem8_verification.txt",
+      "sha256": "b68917879752586482ad7b0fba1e3f8f4b79be30347868f11a60b969b989d390"
+    },
+    {
+      "source": "Solution/Problem 8/crypto_room_problem8_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-08/supporting-files/crypto_room_problem8_verify.py",
+      "sha256": "753c3d3f3b833223b4c74ee8580a0dde60936e509ba30ea043adaf7c99404d07"
+    },
+    {
+      "source": "problem/Problem_09.pdf",
+      "destination": "competition/nsucrypto-2026/problem-09/statement.pdf",
+      "sha256": "5d9d770ef6ce23d8fb89034459c9fe968402f9a579069826084ac8b1830da469"
+    },
+    {
+      "source": "Solution/P9/Solution_9_Vector_LRS.pdf",
+      "destination": "competition/nsucrypto-2026/problem-09/solution.pdf",
+      "sha256": "d173167b34fe357ef8c181982a849d6d45f3d248691ebd3ef7caf73f8cf407e8"
+    },
+    {
+      "source": "Solution/P9/SHA256SUMS.txt",
+      "destination": "competition/nsucrypto-2026/problem-09/supporting-files/SHA256SUMS.txt",
+      "sha256": "18f1c2bd9c326ce9ad5152a9b6992e778f61eca810c7b75e05753370a6c0201d"
+    },
+    {
+      "source": "Solution/P9/vector_lrs_evidence.json",
+      "destination": "competition/nsucrypto-2026/problem-09/supporting-files/vector_lrs_evidence.json",
+      "sha256": "571c9602edf8b65366998fced164f7cfb8824aa5b23da4b9a8a3dc0b3965c602"
+    },
+    {
+      "source": "Solution/P9/Vector_LRS_Final.tex",
+      "destination": "competition/nsucrypto-2026/problem-09/solution.tex",
+      "sha256": "802e6ddac5dc474bc6b5635a2378c9e25fc8d151f60b13ed281b426b60cb83e2"
+    },
+    {
+      "source": "Solution/P9/vector_lrs_m2_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-09/supporting-files/vector_lrs_m2_verify.py",
+      "sha256": "7cfffdbe07a4d26d3789f71cf900ffdf95393818344339d4357122f3a2ff5064"
+    },
+    {
+      "source": "Solution/P9/Verification_Summary.md",
+      "destination": "competition/nsucrypto-2026/problem-09/supporting-files/Verification_Summary.md",
+      "sha256": "d1a516758d221a01a0ca20eb1e6179449adcf2ae0d92050254539bf77e250273"
+    },
+    {
+      "source": "Solution/Problem 9/Solution_09_Vector_LRS_Partial_Results.pdf",
+      "destination": "competition/nsucrypto-2026/problem-09/supporting-files/earlier-version/Solution_09_Vector_LRS_Partial_Results.pdf",
+      "sha256": "69d6888fcb1483b354b31ca611fd05ad0773c3b8f14337b7ceb3f8043982a19e"
+    },
+    {
+      "source": "Solution/Problem 9/vector_lrs_problem9_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-09/supporting-files/earlier-version/vector_lrs_problem9_verification.txt",
+      "sha256": "72a4fc6984b77a18f6670b91155a6288fd8f3b6be990be8dea6d94e6a3004e6d"
+    },
+    {
+      "source": "Solution/Problem 9/vector_lrs_problem9_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-09/supporting-files/earlier-version/vector_lrs_problem9_verify.py",
+      "sha256": "4ed93043536677fbb5e453f8a0761b771ed3f98e908aba06a9ff96b79f8d7201"
+    },
+    {
+      "source": "problem/Problem_10.pdf",
+      "destination": "competition/nsucrypto-2026/problem-10/statement.pdf",
+      "sha256": "f9c1550cafc10a8d3508870d8a7ff5d8d0dac39df8aa42a7022f646be1b76c44"
+    },
+    {
+      "source": "Solution/Problem 1/Solution_10_Bent_Decompositions_Revised_261019_063038.pdf",
+      "destination": "competition/nsucrypto-2026/problem-10/solution.pdf",
+      "sha256": "76ee9af24810c8148a0ebffc48fc55338cdf4a835b52333d531e3f666749eeb8"
+    },
+    {
+      "source": "Solution/Problem 10/bent_decompositions.pdf",
+      "destination": "competition/nsucrypto-2026/problem-10/supporting-files/bent_decompositions.pdf",
+      "sha256": "a5208e5044dcae726b33c52ba3cee88cedc05ef3a174a51486a4ded07bfb8708"
+    },
+    {
+      "source": "Solution/Problem 10/bent_decompositions_problem10_certificates.json",
+      "destination": "competition/nsucrypto-2026/problem-10/supporting-files/bent_decompositions_problem10_certificates.json",
+      "sha256": "af49add5c53ab9bb5b625ea9ae815287827aa4b2a43c9915d45fc0e13772e860"
+    },
+    {
+      "source": "Solution/Problem 10/bent_decompositions_problem10_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-10/supporting-files/bent_decompositions_problem10_verification.txt",
+      "sha256": "6c05aef02e6c10569c416eeada4c745cb0ff14693f9da5fc7edec62056f679e8"
+    },
+    {
+      "source": "Solution/Problem 10/bent_decompositions_problem10_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-10/supporting-files/bent_decompositions_problem10_verify.py",
+      "sha256": "76725c04ee6c6bf9c9abd3dca7e00867d4e1a2cac4efccc964f358ca67e47104"
+    },
+    {
+      "source": "Solution/Problem 10/Solution_10_Bent_Decompositions_Partial_Results.pdf",
+      "destination": "competition/nsucrypto-2026/problem-10/supporting-files/Solution_10_Bent_Decompositions_Partial_Results.pdf",
+      "sha256": "60bca6070538a85a3f41d136e26ec99c8b0ad78475a14f4c48e6c43d7d23557d"
+    },
+    {
+      "source": "problem/Problem_11.pdf",
+      "destination": "competition/nsucrypto-2026/problem-11/statement.pdf",
+      "sha256": "995a21bf047cc3724d29f5fd8345ea398c2bd95a10d30303381cdc4d1f1023d3"
+    },
+    {
+      "source": "Solution/Problem 11/Solution_11_Who_Is_Here.pdf",
+      "destination": "competition/nsucrypto-2026/problem-11/solution.pdf",
+      "sha256": "094773be5b2a438afca8306f717abda764adc5bd549f9e5706d185832dbc1e64"
+    },
+    {
+      "source": "problem/Problem_12.pdf",
+      "destination": "competition/nsucrypto-2026/problem-12/statement.pdf",
+      "sha256": "433f6cad89aa059785875a7108f3384a794105dffc724360c2818ecd98810e20"
+    },
+    {
+      "source": "Solution/Problem 12/Solution_12_A_Quantum_Cipher.pdf",
+      "destination": "competition/nsucrypto-2026/problem-12/solution.pdf",
+      "sha256": "65ebaa1c14d6d5b7af1ad84141af934e515e7bb478653775ea461419371200c9"
+    },
+    {
+      "source": "Solution/Problem 12/quantum_cipher_problem12_verification.txt",
+      "destination": "competition/nsucrypto-2026/problem-12/supporting-files/quantum_cipher_problem12_verification.txt",
+      "sha256": "01d701490bb95faaa42ca714da641774bb2c230d54662ba3d1d9f1763bcc790d"
+    },
+    {
+      "source": "Solution/Problem 12/quantum_cipher_problem12_verify.py",
+      "destination": "competition/nsucrypto-2026/problem-12/supporting-files/quantum_cipher_problem12_verify.py",
+      "sha256": "2c20b2308e2bbf0aaa037ea69a879661cbd3236635ea2afa907a65b8837bbdbe"
+    }
+  ]
+}
